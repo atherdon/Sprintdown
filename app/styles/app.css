@@ -58,14 +58,16 @@ body {
 	height: 100%;
 	max-width: 1600px;
 	margin: 0 auto;
+	color: #585858;
+	font-weight: 300;
 }
 h1 {
 	color: #0071DC;
 	font-size: 2em;
 	margin-bottom: .75em;
 }
-label {
-	font-weight: 200;
+.goal:hover label {
+	color: black;
 }
 .team-column, .new-button-column {
 	position: fixed;
@@ -73,7 +75,7 @@ label {
 .sprint {
 	margin-bottom: 4em;
 	opacity: .5;
-	transition: all 1s;
+	transition: all .5s;
 }
 .new-goal-button {
 	border-top-left-radius: 0;
@@ -81,9 +83,9 @@ label {
 	background: none;
 	color: #0071DC;
 }
-.sprint:last-of-type {
+.sprint:last-of-type, .sprint:hover {
 	opacity: 1;
-	transition: all 1s;
+	transition: all .5s;
 }
 .new-button-column {
 	text-align: right;
@@ -92,7 +94,12 @@ label {
 	text-align: right;
 }
 li {
-	margin: .25em 0;
+
+}
+li label {
+	display: inline-block;
+	height; 100%;
+	padding: 5px 0;
 }
 input[type="checkbox"] {
 	display: inline-block;

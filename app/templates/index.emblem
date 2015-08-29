@@ -14,9 +14,9 @@
 				h1 Sprint #{sprint.number}
 				ul
 					each sprint.goals as |goal|
-						li 
-							input type="checkbox" id="#{sprint.number}-checkbox"
-							label for="#{sprint.number}-checkbox" #{goal.text}
+						li class="goal"
+							input type="checkbox" id="#{goal.timestamp}"
+							label for="#{goal.timestamp}" #{goal.text}
 					if sprint.isLatest
 						li
 							form submit="'newGoal' sprint"

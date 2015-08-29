@@ -25,6 +25,7 @@ export default Ember.Controller.extend({
 		newGoal: function(sprint) {
 			let newGoal = this.get("store").createRecord('goal', {
 				text: this.get('text'),
+				timestamp: Date.now(),
 				sprint: sprint
 			});
 			sprint.get('content.goals').addObject(newGoal);
