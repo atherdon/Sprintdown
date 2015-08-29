@@ -87,11 +87,9 @@ h1 {
 	opacity: 1;
 	transition: all .5s;
 }
-.new-button-column {
-	text-align: right;
-}
 .new-sprint-button {
-	text-align: right;
+	position: fixed;
+	right: 4em;
 }
 li {
 
