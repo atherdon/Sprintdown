@@ -4,6 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'sprintdown',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://luminous-inferno-2282.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {

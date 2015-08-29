@@ -1,0 +1,28 @@
+.row
+	.team-column.quarter
+		h1 Team
+		ul
+			li Logan
+			li Graham
+			li Colin
+			li Cole
+
+	.sprint-column.half
+
+		each sprints as |sprint|
+			.sprint
+				h1 Sprint #{sprint.number}
+				ul
+					each sprint.goals as |goal|
+						li 
+							input type="checkbox" id="#{sprint.number}-checkbox"
+							label for="#{sprint.number}-checkbox" #{goal.text}
+					if sprint.isLatest
+						li
+							form submit="'newGoal' sprint"
+								=input type="text" value=text id="new-goal" autofocus="autofocus"
+								=input type="submit" value="›" class="new-goal-button"
+
+	.new-button-column.quarter
+		form submit="'newSprint' latestSprint"
+			=input type="submit" value="New sprint" class="new-sprint-button"
