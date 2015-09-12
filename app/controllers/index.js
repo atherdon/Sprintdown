@@ -6,8 +6,8 @@ var scrollBottom = function() {
 
 export default Ember.Controller.extend({
 
-	sprints: Ember.computed("model.@each", function() {
-		return this.get('model').map((sprint) => {
+	sprints: Ember.computed("model.sprints.@each", function() {
+		return this.get('model.sprints').map((sprint) => {
 				return Ember.ObjectProxy.create({
 					content: sprint,
 					isLatest: this.get("latestSprint.number") === sprint.get("number")
@@ -16,8 +16,8 @@ export default Ember.Controller.extend({
 		)
 	}),
 
-	latestSprint: Ember.computed("model.@each", function() {
-		return this.get("model").sortBy("number").get("lastObject");
+	latestSprint: Ember.computed("model.sprints.@each", function() {
+		return this.get("model.sprints").sortBy("number").get("lastObject");
 	}),
 
 	actions: {
