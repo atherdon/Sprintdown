@@ -77,11 +77,14 @@ h1 {
 	opacity: .5;
 	transition: all .5s;
 }
-.new-goal-button {
+.new-goal-button, .new-owner-button {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	background: none;
 	color: #0071DC;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 .sprint:last-of-type, .sprint:hover {
 	opacity: 1;
@@ -91,8 +94,10 @@ h1 {
 	position: fixed;
 	right: 4em;
 }
-li {
-
+.goal input[type="text"] {
+	border: none;
+	display: inline-block;
+	width: 90%;
 }
 li label {
 	display: inline-block;
@@ -105,11 +110,6 @@ input[type="checkbox"] {
 	width: auto;
 	margin-right: 10px;
 }
-.sprint-column form {
+form {
 	position: relative;
-}
-.new-goal-button {
-	position: absolute;
-	right: 0;
-	top: 0;
 }

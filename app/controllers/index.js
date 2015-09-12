@@ -5,10 +5,7 @@ var scrollBottom = function() {
 }
 
 export default Ember.Controller.extend({
-	// init: function () {
- //    this._super();
- //    Ember.run.schedule("afterRender",this, scrollBottom());
- //  },
+
 	sprints: Ember.computed("model.@each", function() {
 		return this.get('model').map((sprint) => {
 				return Ember.ObjectProxy.create({
@@ -18,9 +15,11 @@ export default Ember.Controller.extend({
 			}
 		)
 	}),
+
 	latestSprint: Ember.computed("model.@each", function() {
 		return this.get("model").sortBy("number").get("lastObject");
 	}),
+
 	actions: {
 		newGoal: function(sprint) {
 			let newGoal = this.get("store").createRecord('goal', {
@@ -37,8 +36,21 @@ export default Ember.Controller.extend({
 			});
 			scrollBottom();
 		},
+
+		updateGoal: function(goal) {
+			let text = goal.get('text');
+			if(event.keyCode == 8 && text == "") {
+				goal.destroyRecord();
+			}
+			else {
+				this.store.find('goal', goal.id).then(function(goal) {
+				  goal.set('text', text);
+				  goal.save();
+				});
+			}
+		},
+
 		newSprint: function() {
-		
 			var sprintAttrs = {};
 			if (this.get("latestSprint")) {
 				sprintAttrs = {number: this.get("latestSprint").get("number")+1}
@@ -46,6 +58,26 @@ export default Ember.Controller.extend({
 			let newSprint = this.store.createRecord('sprint', sprintAttrs);
 			newSprint.save();
 			scrollBottom();
+		},
+
+		newOwner: function() {
+			let newOwner = this.store.createRecord('owner', {
+				name: this.get('name')
+			});
+			newOwner.save();
+			this.setProperties({
+				text: ''
+			});
+		},
+
+		toggle: function(goal) {
+			if (goal.get('complete')) {
+				goal.set('complete', false)
+			}
+			else {
+				goal.set('complete', true)
+			}
+			goal.save();
 		}
 	}
 });

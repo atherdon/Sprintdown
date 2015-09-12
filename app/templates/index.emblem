@@ -1,11 +1,58 @@
+//- <div class="row">
+//- 	<div class="team-column quarter">
+//- 		<h1>Team</h1>
+//- 		<ul>
+//- 			{{#each owners as |owner|}}
+//- 				<li>{{owner.name}}</li>
+//- 			{{/each}}
+//- 			<li>
+//- 				<form {{action "newOwner"}}>
+//- 					{{input type="text" value=name}}
+//- 					{{input type="submit" value="+" class="new-owner-button"}}
+//- 				</form>
+//- 			</li>
+//- 		</ul>
+//- 	</div>
+//- 	<div class="sprint-column half">
+//- 		{{#each sprints as |sprint|}}
+//- 			<div class="sprint">
+//- 				<h1>Sprint {{sprint.number}}</h1>
+//- 				<ul>
+//- 					{{#each sprint.goals as |goal|}}
+//- 						<li class="goal">
+//- 							{{#if goal.complete}}
+//- 								<input type="checkbox" checked="checked" {{action "toggle" goal}}> 
+//- 							{{else}}
+//- 								<input type="checkbox" {{action "toggle" goal}}>
+//- 							{{/if}}
+//- 							{{input type="text" key-up=(action "updateGoal" goal) id=goal.timestamp value=goal.text}}
+//- 						</li>
+//- 					{{/each}}
+//- 				</ul>
+//- 			</div>
+//- 		{{/each}}
+//- 	</div>
+
+//- 	<div class="new-button column quarter">
+//- 		<form {{action "newSprint" latestSprint}}>
+			
+//- 		</form>
+//- 	</div>
+//- </div>
+
+
 .row
 	.team-column.quarter
 		h1 Team
 		ul
-			li Logan
-			li Graham
-			li Colin
-			li Cole
+			each owners as |owner|
+				li #{owner.name}
+			li
+				form submit="newOwner"
+					=input type="text" value=name
+					=input type="submit" value="+" class="new-owner-button" 
+
+
 
 	.sprint-column.half
 
@@ -14,14 +61,17 @@
 				h1 Sprint #{sprint.number}
 				ul
 					each sprint.goals as |goal|
-						li class="goal"
-							input type="checkbox" id="#{goal.timestamp}"
-							label for="#{goal.timestamp}" #{goal.text}
+						li.goal
+							if goal.complete
+								input{action "toggle" goal} type="checkbox" checked="checked"
+							else
+								input{action "toggle" goal} type="checkbox"
+							=input key-up=(action "updateGoal" goal) type="text" id=goal.timestamp value=goal.text
 					if sprint.isLatest
 						li
 							form submit="'newGoal' sprint"
 								=input type="text" value=text id="new-goal" autofocus="autofocus"
-								=input type="submit" value="›" class="new-goal-button"
+								=input type="submit" value="+" class="new-goal-button"
 
 	.new-button-column.quarter
 		form submit="'newSprint' latestSprint"

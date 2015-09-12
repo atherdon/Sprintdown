@@ -1,9 +1,0 @@
-.sprint
-	h1 = sprint.name
-	ul
-		each sprint.goals as |goal|
-			li #{goal}
-		li
-			form submit="newGoal"
-				=input type="text" value=text
-				=input type="submit"
