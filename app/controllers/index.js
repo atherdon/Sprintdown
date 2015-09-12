@@ -61,12 +61,13 @@ export default Ember.Controller.extend({
 		},
 
 		newOwner: function() {
+			debugger;
 			let newOwner = this.store.createRecord('owner', {
 				name: this.get('name')
 			});
 			newOwner.save();
 			this.setProperties({
-				text: ''
+				name: ''
 			});
 		},
 
