@@ -70,7 +70,7 @@
 					if sprint.isLatest
 						li
 							form submit="'newGoal' sprint"
-								=input type="text" value=text id="new-goal" autofocus="autofocus"
+								=input type="text" value=text id="new-goal" autofocus="autofocus" placeholder="Add a new goal"
 								=input type="submit" value="+" class="new-goal-button"
 
 	.new-button-column.quarter
